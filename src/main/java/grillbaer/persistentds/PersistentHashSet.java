@@ -125,14 +125,14 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public ListWithHashCode<E> findListForElement(E element) {
+	ListWithHashCode<E> findListForElement(E element) {
 		// direct lookup of an element is allowed by the comparator,
 		// (avoids creating a List for each lookup)
 		return (ListWithHashCode<E>) ((PersistentBinTreeSet) this.elementsByHashCodeSet)
 				.get(element);
 	}
 
-	public ListWithHashCode<E> findOrCreateListForElement(E element) {
+	ListWithHashCode<E> findOrCreateListForElement(E element) {
 		ListWithHashCode<E> list = findListForElement(element);
 		if (list == null) {
 			list = new ListWithHashCode<>(element);
