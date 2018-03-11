@@ -1,0 +1,5 @@
+- Map fertig unit-testen
+- HashSet fertig und komplett unit-testen
+- HashMap bauen
+- Test coverage prüfen und Tests ausbauen
+- Bessere Serialisierung
