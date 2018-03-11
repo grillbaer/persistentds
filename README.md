@@ -15,37 +15,40 @@ Syntax and behaviour of the persistent collections' interfaces are similar to `j
 
 Simply start with the static factory `PersistentCollections` to create new instances of persistent data structures.
 
+## Dependencies
+Requires Java 8.
+
 ## Examples
 ### List
 ```java
 PersistentList<Integer> list = PersistentCollections.persistentBinTreeList();
 list = list.add(1).add(2).add(3);
-PersistentList<Integer> furtherModifiedList = list.add(4);
-System.out.println("Original list=" + list + " => further modified list=" + furtherModifiedList);
+PersistentList<Integer> modifiedList = list.add(4);
+System.out.println("Original list=" + list + " => modified list=" + modifiedList);
 ```
 prints
 
-    Original list={1,2,3} => further modified list={1,2,3,4}
+    Original list={1,2,3} => modified list={1,2,3,4}
 
 ### Set
 ```java
 PersistentSet<String> set = PersistentCollections.persistentBinTreeSet();
 // or PersistentCollections.persistentHashSet();
 set = set.put("A").put("B").put("C");
-PersistentSet<String> furtherModifiedSet = set.remove("B");
-System.out.println("Original set=" + set + " => further modified set=" + furtherModifiedSet);
+PersistentSet<String> modifiedSet = set.remove("B");
+System.out.println("Original set=" + set + " => modified set=" + modifiedSet);
 ```
 prints
 
-    Original set={A,B,C} => further modified set={A,C}
+    Original set={A,B,C} => modified set={A,C}
 
 ### Map
 ```java
 PersistentMap<Integer, String> map = PersistentCollections.persistentBinTreeMap();
 map = map.put(1, "one").put(2, "two");
-PersistentMap<Integer, String> furtherModifiedMap = map.put(3, "three");
-System.out.println("Original map=" + map + " => further modified map=" + furtherModifiedMap);
+PersistentMap<Integer, String> modifiedMap = map.put(3, "three");
+System.out.println("Original map=" + map + " => modified map=" + modifiedMap);
 ```
 prints
 
-    Original map={[1 -> one],[2 -> two]} => further modified map={[1 -> one],[2 -> two],[3 -> three]}
+    Original map={[1 -> one],[2 -> two]} => modified map={[1 -> one],[2 -> two],[3 -> three]}
