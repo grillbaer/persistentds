@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/grillbaer/persistentds.svg?branch=master)](https://travis-ci.org/grillbaer/persistentds)
+
 # Persistent Data Structures
 Immutable copy-on-write collections for lists, maps and sets in Java. Based on auto-balancing binary trees.
 
