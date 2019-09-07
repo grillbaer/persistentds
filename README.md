@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/grillbaer/persistentds.svg?branch=master)](https://travis-ci.org/grillbaer/persistentds)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=alert_status)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 
 # Persistent Data Structures
 Immutable copy-on-write collections for lists, maps and sets in Java. Based on auto-balancing binary trees.
