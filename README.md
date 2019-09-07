@@ -1,4 +1,11 @@
 [![Build Status](https://travis-ci.org/grillbaer/persistentds.svg?branch=master)](https://travis-ci.org/grillbaer/persistentds)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=coverage)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=bugs)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=code_smells)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=security_rating)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=alert_status)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 
 # Persistent Data Structures
