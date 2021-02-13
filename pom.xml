@@ -7,6 +7,12 @@
 	<name>Persistent DS</name>
 	<description>Persistent data structures - immutable copy-on-write lists, maps and sets for Java. Based on balanced trees.</description>
 
+	<properties>
+		<sonar.projectKey>grillbaer_persistentds</sonar.projectKey>
+		<sonar.organization>grillbaer</sonar.organization>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+	</properties>
+	
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
