@@ -1,37 +1,54 @@
-## Welcome to GitHub Pages
+# persistentds - Persistent Data Structures
+Immutable copy-on-write collections for lists, maps and sets in Java. Based on auto-balancing binary trees.
 
-You can use the [editor on GitHub](https://github.com/grillbaer/persistentds/edit/master/docs/index.md) to maintain and preview the content for your website in Markdown files.
+## Why use them?
+Persistent collections simplify synchronization on shared data in multi-threaded applications because they guarantee immutability of already existing instances. They also make it easy to pass both old and new states to observers.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## What does 'persistent' mean here?
+A persistent collection is always immutable. Modification methods return new instances of the collection without changing the existing instance. So you don't have to fiddle with error-prone and concurrency-restricting locking, because immutable data objects are thread-safe by nature.
+For good performance, `peristentsds` shares common parts between modified and previous versions of the data structures. This keeps the copy overhead as low as possible.
 
-### Markdown
+For an in-detail definition see [Persistent Data Structure on WIKIPEDIA](https://en.wikipedia.org/wiki/Persistent_data_structure).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+# How to use?
+Syntax and behaviour of the persistent collections' interfaces are similar to `java.util.Collection`. However, all modification methods return modified versions of the collection and will not change the original one.
 
-```markdown
-Syntax highlighted code block
+Simply start with the static factory `PersistentCollections` to create new instances of persistent data structures.
 
-# Header 1
-## Header 2
-### Header 3
+## Dependencies
+Requires at least Java 8.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
+## Examples
+### List
+```java
+PersistentList<Integer> list = PersistentCollections.persistentBinTreeList();
+list = list.add(1).add(2).add(3);
+PersistentList<Integer> modifiedList = list.add(4);
+System.out.println("Original list=" + list + " => modified list=" + modifiedList);
 ```
+prints
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+    Original list={1,2,3} => modified list={1,2,3,4}
 
-### Jekyll Themes
+### Set
+```java
+PersistentSet<String> set = PersistentCollections.persistentBinTreeSet();
+// or PersistentCollections.persistentHashSet();
+set = set.put("A").put("B").put("C");
+PersistentSet<String> modifiedSet = set.remove("B");
+System.out.println("Original set=" + set + " => modified set=" + modifiedSet);
+```
+prints
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/grillbaer/persistentds/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+    Original set={A,B,C} => modified set={A,C}
 
-### Support or Contact
+### Map
+```java
+PersistentMap<Integer, String> map = PersistentCollections.persistentBinTreeMap();
+map = map.put(1, "one").put(2, "two");
+PersistentMap<Integer, String> modifiedMap = map.put(3, "three");
+System.out.println("Original map=" + map + " => modified map=" + modifiedMap);
+```
+prints
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+    Original map={[1 -> one],[2 -> two]} => modified map={[1 -> one],[2 -> two],[3 -> three]}
