@@ -1,4 +1,4 @@
-![Build](https://github.com/grillbaer/persistentds/workflows/Maven%20Build/badge.svg)
+[![Build](https://github.com/grillbaer/persistentds/workflows/Maven%20Build/badge.svg)](https://github.com/grillbaer/persistentds/actions?query=workflow%3A%22Maven+Build%22)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=coverage)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=bugs)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
@@ -26,7 +26,7 @@ Syntax and behaviour of the persistent collections' interfaces are similar to `j
 Simply start with the static factory `PersistentCollections` to create new instances of persistent data structures.
 
 ## Dependencies
-Requires Java 8.
+Requires at least Java 8.
 
 ## Examples
 ### List
