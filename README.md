@@ -33,7 +33,7 @@ Maven dependency:
 <dependency>
   <groupId>io.github.grillbaer</groupId>
   <artifactId>persistentds</artifactId>
-  <version>2.0.0</version>
+  <version>2.0.1</version>
 </dependency>
 ```
 
