@@ -1,6 +1,9 @@
 # persistentds - Persistent Data Structures
 Immutable copy-on-write collections for lists, maps and sets in Java. Based on auto-balancing binary trees.
 
+# Persistent Data Structures
+Immutable copy-on-write collections for lists, maps and sets in Java. Based on auto-balancing binary trees.
+
 ## Why use them?
 Persistent collections simplify synchronization on shared data in multi-threaded applications because they guarantee immutability of already existing instances. They also make it easy to pass both old and new states to observers.
 
@@ -16,15 +19,24 @@ Syntax and behaviour of the persistent collections' interfaces are similar to `j
 Simply start with the static factory `PersistentCollections` to create new instances of persistent data structures.
 
 ## Dependencies
-Requires at least Java 8.
+Requires at least Java 8. Needs no other libraries.
+
+Maven dependency:
+```xml
+<dependency>
+  <groupId>io.github.grillbaer</groupId>
+  <artifactId>persistentds</artifactId>
+  <version>2.0.1</version>
+</dependency>
+```
 
 ## Examples
 ### List
 ```java
 PersistentList<Integer> list = PersistentCollections.persistentBinTreeList();
-list = list.add(1).add(2).add(3);
-PersistentList<Integer> modifiedList = list.add(4);
-System.out.println("Original list=" + list + " => modified list=" + modifiedList);
+        list = list.add(1).add(2).add(3);
+        PersistentList<Integer> modifiedList = list.add(4);
+        System.out.println("Original list=" + list + " => modified list=" + modifiedList);
 ```
 prints
 
@@ -34,9 +46,9 @@ prints
 ```java
 PersistentSet<String> set = PersistentCollections.persistentBinTreeSet();
 // or PersistentCollections.persistentHashSet();
-set = set.put("A").put("B").put("C");
-PersistentSet<String> modifiedSet = set.remove("B");
-System.out.println("Original set=" + set + " => modified set=" + modifiedSet);
+        set = set.put("A").put("B").put("C");
+        PersistentSet<String> modifiedSet = set.remove("B");
+        System.out.println("Original set=" + set + " => modified set=" + modifiedSet);
 ```
 prints
 
@@ -45,9 +57,9 @@ prints
 ### Map
 ```java
 PersistentMap<Integer, String> map = PersistentCollections.persistentBinTreeMap();
-map = map.put(1, "one").put(2, "two");
-PersistentMap<Integer, String> modifiedMap = map.put(3, "three");
-System.out.println("Original map=" + map + " => modified map=" + modifiedMap);
+        map = map.put(1, "one").put(2, "two");
+        PersistentMap<Integer, String> modifiedMap = map.put(3, "three");
+        System.out.println("Original map=" + map + " => modified map=" + modifiedMap);
 ```
 prints
 
