@@ -26,7 +26,16 @@ Syntax and behaviour of the persistent collections' interfaces are similar to `j
 Simply start with the static factory `PersistentCollections` to create new instances of persistent data structures.
 
 ## Dependencies
-Requires at least Java 8.
+Requires at least Java 8. Needs no other libraries.
+
+Maven dependency:
+```xml
+<dependency>
+  <groupId>io.github.grillbaer</groupId>
+  <artifactId>persistentds</artifactId>
+  <version>2.0.0</version>
+</dependency>
+```
 
 ## Examples
 ### List
