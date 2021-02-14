@@ -13,11 +13,8 @@ import java.util.Objects;
  * <p>
  * Supports serialization if the contained elements support serialization.
  *
- * @param <E>
- *            type of the elements stored in tree nodes
- * @param <T>
- *            type of the concrete binary tree implementation
- * 
+ * @param <E> type of the elements stored in tree nodes
+ * @param <T> type of the concrete binary tree implementation
  * @author Holger Fleischmann
  */
 abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
@@ -32,24 +29,20 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 
 	/**
 	 * Returns a leaf-node containing an element but no (=empty) sub-trees.
-	 * 
-	 * @param element
-	 *            the element contained in the node
+	 *
+	 * @param element the element contained in the node
 	 */
 	abstract T leaf(E element);
 
 	/**
 	 * Returns an inner node containing an element and a left and a right
 	 * sub-tree.
-	 * 
-	 * @param left
-	 *            left sub-tree; must not be <code>null</code>, may be
-	 *            {@linkplain #empty()}
-	 * @param element
-	 *            the element at the node
-	 * @param right
-	 *            left sub-tree; must not be <code>null</code>, may be
-	 *            {@linkplain #empty()}
+	 *
+	 * @param left    left sub-tree; must not be <code>null</code>, may be
+	 *                {@linkplain #empty()}
+	 * @param element the element at the node
+	 * @param right   left sub-tree; must not be <code>null</code>, may be
+	 *                {@linkplain #empty()}
 	 */
 	abstract T inner(T left, E element, T right);
 
@@ -91,9 +84,9 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 	 * Returns a balanced version of this tree regarding the sizes of the left
 	 * and right sub-trees. It does not descending deeply into sub-trees. It
 	 * only uses simple tree rotations around this node.
-	 * 
+	 *
 	 * @return a balanced version of this tree or simply the unchanged tree if
-	 *         tree rotations do not improve balance
+	 * tree rotations do not improve balance
 	 */
 	final T balanceThisNode() {
 		if (!left().isEmpty() && !right().isEmpty()) {
@@ -198,39 +191,39 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 			public E next() {
 				switch (currentPos) {
 
-				case LEFT: {
-					E next = nonEmptyIteratorForCurrentPos.next();
-					if (!nonEmptyIteratorForCurrentPos.hasNext()) {
-						currentPos = BinTreePos.THIS;
-						nonEmptyIteratorForCurrentPos = null;
+					case LEFT: {
+						E next = nonEmptyIteratorForCurrentPos.next();
+						if (!nonEmptyIteratorForCurrentPos.hasNext()) {
+							currentPos = BinTreePos.THIS;
+							nonEmptyIteratorForCurrentPos = null;
+						}
+						return next;
 					}
-					return next;
-				}
 
-				case THIS: {
-					currentPos = BinTreePos.RIGHT;
-					nonEmptyIteratorForCurrentPos = right().iterator();
-					if (!nonEmptyIteratorForCurrentPos.hasNext()) {
-						currentPos = BinTreePos.AFTER_END;
-						nonEmptyIteratorForCurrentPos = null;
+					case THIS: {
+						currentPos = BinTreePos.RIGHT;
+						nonEmptyIteratorForCurrentPos = right().iterator();
+						if (!nonEmptyIteratorForCurrentPos.hasNext()) {
+							currentPos = BinTreePos.AFTER_END;
+							nonEmptyIteratorForCurrentPos = null;
+						}
+						return element();
 					}
-					return element();
-				}
 
-				case RIGHT: {
-					E next = nonEmptyIteratorForCurrentPos.next();
-					if (!nonEmptyIteratorForCurrentPos.hasNext()) {
-						currentPos = BinTreePos.AFTER_END;
-						nonEmptyIteratorForCurrentPos = null;
+					case RIGHT: {
+						E next = nonEmptyIteratorForCurrentPos.next();
+						if (!nonEmptyIteratorForCurrentPos.hasNext()) {
+							currentPos = BinTreePos.AFTER_END;
+							nonEmptyIteratorForCurrentPos = null;
+						}
+						return next;
 					}
-					return next;
-				}
 
-				case AFTER_END:
-					throw new NoSuchElementException();
+					case AFTER_END:
+						throw new NoSuchElementException();
 
-				default:
-					throw new AssertionError("unreachable case");
+					default:
+						throw new AssertionError("unreachable case");
 				}
 
 			}
@@ -242,7 +235,7 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 	 * this tree in left-to-right depth-first order.
 	 */
 	public ArrayList<E> toArrayList() {
-		ArrayList<E> list = new ArrayList<E>(size());
+		ArrayList<E> list = new ArrayList<>(size());
 		addAllToCollection(list);
 		return list;
 	}
@@ -264,7 +257,7 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 	 * {@linkplain PersistentBinTree}s and contain equal elements in the same
 	 * depth-first order (as enumerated by the {@linkplain #iterator()}.
 	 */
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
 	public final boolean equals(Object obj) {
 		if (obj == null)
@@ -323,7 +316,7 @@ abstract class PersistentBinTree<E, T extends PersistentBinTree<E, T>>
 		return (left().isEmpty() ? "" : "(" + left().toDebugString() + ")<- ")
 				+ element()
 				+ (right().isEmpty() ? "" : " ->(" + right().toDebugString()
-						+ ")");
+				+ ")");
 	}
 
 	public int depth() {

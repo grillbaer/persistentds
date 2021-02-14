@@ -21,7 +21,7 @@ import java.util.Comparator;
  * <p>
  * Note on serialization: the collections will be serializable if all contained
  * elements and the passed comparators are serializable.
- * 
+ *
  * @author Holger Fleischmann
  */
 public final class PersistentCollections {
@@ -29,7 +29,7 @@ public final class PersistentCollections {
 	/**
 	 * Returns an empty persistent list based on balanced binary trees.
 	 */
-	public static <E> PersistentBinTreeList<E> persistentBinTreeList() {
+	public static <E> PersistentList<E> persistentBinTreeList() {
 		return PersistentBinTreeList.create();
 	}
 
@@ -40,10 +40,10 @@ public final class PersistentCollections {
 	 * <code>null</code> elements are always supported. They are treated to be
 	 * less than any non- <code>null</code> element and will not be passed to
 	 * the elements' {@linkplain Comparable#compareTo(Object)} methods.
-	 * 
+	 *
 	 * @see #persistentBinTreeSet(Comparator)
 	 */
-	public static <E extends Comparable<E>> PersistentBinTreeSet<E> persistentBinTreeSet() {
+	public static <E extends Comparable<E>> PersistentSet<E> persistentBinTreeSet() {
 		return persistentBinTreeSet(ComparableComparator.getInstance());
 	}
 
@@ -51,12 +51,11 @@ public final class PersistentCollections {
 	 * Returns an empty persistent set using a custom comparator. It is based on
 	 * balanced binary trees. Note that <code>null</code> elements are supported
 	 * if the {@linkplain Comparator} supports them.
-	 * 
-	 * @param comparator
-	 *            the comparator used to sort and check elements for equality
+	 *
+	 * @param comparator the comparator used to sort and check elements for equality
 	 * @see #persistentBinTreeSet()
 	 */
-	public static <E> PersistentBinTreeSet<E> persistentBinTreeSet(
+	public static <E> PersistentSet<E> persistentBinTreeSet(
 			Comparator<? super E> comparator) {
 		return PersistentBinTreeSet.create(comparator);
 	}
@@ -67,7 +66,7 @@ public final class PersistentCollections {
 	 * checking keys for equality as defined for sets in
 	 * {@linkplain #persistentBinTreeSet()} .
 	 */
-	public static <K extends Comparable<K>, V> PersistentBinTreeMap<K, V> persistentBinTreeMap() {
+	public static <K extends Comparable<K>, V> PersistentMap<K, V> persistentBinTreeMap() {
 		return persistentBinTreeMap(ComparableComparator.getInstance());
 	}
 
@@ -77,7 +76,7 @@ public final class PersistentCollections {
 	 * sorting and checking keys for equality as defined for sets in
 	 * {@linkplain #persistentBinTreeSet(Comparator)}.
 	 */
-	public static <K, V> PersistentBinTreeMap<K, V> persistentBinTreeMap(
+	public static <K, V> PersistentMap<K, V> persistentBinTreeMap(
 			Comparator<? super K> keyComparator) {
 		return PersistentBinTreeMap.create(keyComparator);
 	}
@@ -131,5 +130,5 @@ public final class PersistentCollections {
 		private Object readResolve() {
 			return COMPARABLE_COMPARATOR;
 		}
-	};
+	}
 }

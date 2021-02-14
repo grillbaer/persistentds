@@ -13,9 +13,9 @@ class PersistentBinTreeMap<K, V> extends AbstractPersistentMap<K, V> {
 
 	static <K, V> PersistentBinTreeMap<K, V> create(
 			Comparator<? super K> keyComparator) {
-		return new PersistentBinTreeMap<K, V>(
-				PersistentCollections
-						.<DefaultEntry<K, V>> persistentBinTreeSet(new EntryByKeyComparator<K, V, DefaultEntry<K, V>>(
+		return new PersistentBinTreeMap<>(
+				(PersistentBinTreeSet<DefaultEntry<K, V>>) PersistentCollections
+						.persistentBinTreeSet(new EntryByKeyComparator<K, V, DefaultEntry<K, V>>(
 								keyComparator)));
 	}
 
@@ -31,7 +31,7 @@ class PersistentBinTreeMap<K, V> extends AbstractPersistentMap<K, V> {
 	}
 
 	private DefaultEntry<K, V> keyLookupEntry(K key) {
-		return new DefaultEntry<K, V>(key, null);
+		return new DefaultEntry<>(key, null);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ class PersistentBinTreeMap<K, V> extends AbstractPersistentMap<K, V> {
 		return this.entrySet.depth();
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	public Iterator<Entry<K, V>> iterator() {
 		return (Iterator) this.entrySet.iterator();
@@ -80,7 +80,7 @@ class PersistentBinTreeMap<K, V> extends AbstractPersistentMap<K, V> {
 		return this.entrySet.isEmpty();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
 	public PersistentSet<Entry<K, V>> entrySet() {
 		return (PersistentSet) this.entrySet;
@@ -95,7 +95,7 @@ class PersistentBinTreeMap<K, V> extends AbstractPersistentMap<K, V> {
 			implements Comparator<E>, Serializable {
 		private static final long serialVersionUID = 1L;
 
-		private Comparator<? super K> keyComparator;
+		private final Comparator<? super K> keyComparator;
 
 		public EntryByKeyComparator(Comparator<? super K> keyComparator) {
 			Objects.requireNonNull(keyComparator,

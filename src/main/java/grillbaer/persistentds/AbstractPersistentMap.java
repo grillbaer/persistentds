@@ -6,7 +6,7 @@ import java.util.Objects;
 abstract class AbstractPersistentMap<K, V> implements PersistentMap<K, V> {
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@Override
 	public boolean equals(Object obj) {
 		if (obj == null)
@@ -75,12 +75,8 @@ abstract class AbstractPersistentMap<K, V> implements PersistentMap<K, V> {
 				return false;
 
 			if (getValue() == null) {
-				if (other.getValue() != null)
-					return false;
-			} else if (!getValue().equals(other.getValue()))
-				return false;
-
-			return true;
+				return other.getValue() == null;
+			} else return getValue().equals(other.getValue());
 		}
 
 		@Override

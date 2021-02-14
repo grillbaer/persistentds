@@ -8,17 +8,17 @@ import java.util.NoSuchElementException;
 class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 	private static final long serialVersionUID = 1L;
 
-	private final PersistentBinTreeSet<ListWithHashCode<E>> elementsByHashCodeSet;
+	private final PersistentSet<ListWithHashCode<E>> elementsByHashCodeSet;
 	private final int size;
 
 	static <E> PersistentHashSet<E> create() {
 		return new PersistentHashSet<>(
-				PersistentCollections.<ListWithHashCode<E>> persistentBinTreeSet(HashCodeComparator
+				PersistentCollections.persistentBinTreeSet(HashCodeComparator
 						.getInstance()), 0);
 	}
 
 	private PersistentHashSet(
-			PersistentBinTreeSet<ListWithHashCode<E>> elementsByHashCodeSet,
+			PersistentSet<ListWithHashCode<E>> elementsByHashCodeSet,
 			int size) {
 		this.elementsByHashCodeSet = elementsByHashCodeSet;
 		this.size = size;
@@ -68,7 +68,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 		else
 			return new PersistentHashSet<>(
 					this.elementsByHashCodeSet.put(newList), this.size
-							- list.size() + newList.size());
+					- list.size() + newList.size());
 	}
 
 	@Override
@@ -80,7 +80,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 		else
 			return new PersistentHashSet<>(
 					this.elementsByHashCodeSet.put(newList), this.size
-							- list.size() + newList.size());
+					- list.size() + newList.size());
 	}
 
 	@Override
@@ -112,11 +112,11 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 				if (newList.isEmpty()) {
 					return new PersistentHashSet<>(
 							this.elementsByHashCodeSet.remove(list), this.size
-									- list.size());
+							- list.size());
 				} else {
-					return new PersistentHashSet<E>(
+					return new PersistentHashSet<>(
 							this.elementsByHashCodeSet.put(newList), this.size
-									- list.size() + newList.size());
+							- list.size() + newList.size());
 				}
 			}
 		} else {
@@ -124,7 +124,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 		}
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	ListWithHashCode<E> findListForElement(E element) {
 		// direct lookup of an element is allowed by the comparator,
 		// (avoids creating a List for each lookup)
@@ -181,7 +181,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 
 		ListWithHashCode(E element) {
 			this.hashCode = getHashCodeOf(element);
-			this.elements = PersistentCollections.<E> persistentBinTreeList();
+			this.elements = PersistentCollections.persistentBinTreeList();
 		}
 
 		public int size() {
@@ -231,7 +231,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 				if (this.elements == newList)
 					return this;
 				else
-					return new ListWithHashCode<E>(this.hashCode, newList);
+					return new ListWithHashCode<>(this.hashCode, newList);
 			}
 		}
 
@@ -240,7 +240,7 @@ class PersistentHashSet<E> extends AbstractPersistentSet<E> {
 			if (this.elements == newList)
 				return this;
 			else
-				return new ListWithHashCode<E>(this.hashCode, newList);
+				return new ListWithHashCode<>(this.hashCode, newList);
 		}
 	}
 
