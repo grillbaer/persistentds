@@ -3,31 +3,31 @@ package grillbaer.persistentds;
 import java.util.ArrayList;
 
 public interface PersistentList<E> extends Iterable<E> {
-	PersistentList<E> add(int index, E element);
+    PersistentList<E> add(int index, E element);
 
-	PersistentList<E> add(E element);
+    PersistentList<E> add(E element);
 
-	PersistentList<E> addAll(Iterable<E> elements);
+    PersistentList<E> addAll(Iterable<E> elements);
 
-	PersistentList<E> remove(int index);
+    PersistentList<E> remove(int index);
 
-	PersistentList<E> remove(E element);
+    PersistentList<E> remove(E element);
 
-	PersistentList<E> set(int index, E element);
+    PersistentList<E> set(int index, E element);
 
-	E get(int index);
+    E get(int index);
 
-	E getFirstEqualElement(E element);
+    E getFirstEqualElement(E element);
 
-	boolean contains(E element);
+    boolean contains(E element);
 
-	int indexOf(E element);
+    int indexOf(E element);
 
-	int lastIndexOf(E element);
+    int lastIndexOf(E element);
 
-	int size();
+    int size();
 
-	boolean isEmpty();
+    boolean isEmpty();
 
-	ArrayList<E> toArrayList();
+    ArrayList<E> toArrayList();
 }
