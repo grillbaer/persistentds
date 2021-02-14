@@ -4,17 +4,20 @@
     <groupId>io.github.grillbaer</groupId>
     <artifactId>persistentds</artifactId>
     <version>2.0.0-SNAPSHOT</version>
-    <name>Persistent DS</name>
-    <description>Persistent data structures - immutable copy-on-write lists, maps and sets for Java. Based on balanced
-        trees.
+
+    <name>Persistent Data Structures</name>
+    <description>Persistent data structures in the form of immutable copy-on-write lists, maps and sets for Java. Based
+        on balanced trees.
     </description>
+    <url>https://github.com/grillbaer/persistentds</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.projectKey>grillbaer_persistentds</sonar.projectKey>
         <sonar.organization>grillbaer</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/target/site/cobertura/coverage.xml</sonar.coverage.jacoco.xmlReportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>${basedir}/target/site/cobertura/coverage.xml
+        </sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <licenses>
@@ -34,6 +37,19 @@
         </developer>
     </developers>
 
+    <scm>
+        <connection>scm:git:git://github.com/grillbaer/persistentds.git</connection>
+        <developerConnection>scm:git:ssh://github.com:grillbaer/persistentds.git</developerConnection>
+        <url>http://github.com/grillbaer/persistentds</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <build>
 
         <testResources>
@@ -48,8 +64,9 @@
         <plugins>
 
             <plugin>
+                <!-- Java Compiler -->
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>3.8.0</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -57,6 +74,37 @@
             </plugin>
 
             <plugin>
+                <!-- Source jar -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.2.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Javadoc jar -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Test coverage report -->
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.6</version>
@@ -68,6 +116,35 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Signatures for Maven Central deployment -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <!-- Maven Central deployment -->
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.8</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -82,4 +159,5 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
 </project>
