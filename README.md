@@ -1,3 +1,4 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.grillbaer/persistentds/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.grillbaer/persistentds)
 [![Build](https://github.com/grillbaer/persistentds/workflows/Maven%20Build/badge.svg)](https://github.com/grillbaer/persistentds/actions?query=workflow%3A%22Maven+Build%22)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=coverage)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=grillbaer_persistentds&metric=vulnerabilities)](https://sonarcloud.io/dashboard?id=grillbaer_persistentds)
@@ -28,12 +29,14 @@ Simply start with the static factory `PersistentCollections` to create new insta
 ## Dependencies
 Requires at least Java 8. Needs no other libraries.
 
-Maven dependency:
+For dependency declaration in various build systems or download of compiled jar see [Maven Central](https://search.maven.org/search?q=g:io.github.grillbaer%20AND%20a:persistentds).
+
+You may use this Maven dependency with the latest version number:
 ```xml
 <dependency>
   <groupId>io.github.grillbaer</groupId>
   <artifactId>persistentds</artifactId>
-  <version>2.0.1</version>
+  <version>x.x.x</version>
 </dependency>
 ```
 
